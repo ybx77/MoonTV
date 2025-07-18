@@ -4,6 +4,7 @@
 
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import Script from 'next/script';
 import { Suspense, useEffect, useState } from 'react';
 
 // 客户端收藏 API
@@ -146,7 +147,20 @@ function HomeClient() {
 
   return (
     <PageLayout>
+      {/* 添加不蒜子统计脚本 */}
+      <Script 
+        strategy="afterInteractive" 
+        src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" 
+      />
+      
       <div className='px-2 sm:px-10 py-4 sm:py-8 overflow-visible'>
+        {/* 访问统计显示在顶部 */}
+        <div className="text-center text-sm text-gray-500 mb-6 dark:text-gray-400">
+          <span id="busuanzi_container_site_pv">
+            本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+          </span>
+        </div>
+
         {/* 顶部 Tab 切换 */}
         <div className='mb-8 flex justify-center'>
           <CapsuleSwitch
@@ -334,6 +348,7 @@ function HomeClient() {
     </PageLayout>
   );
 }
+
 export default function Home() {
   return (
     <Suspense>
